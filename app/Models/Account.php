@@ -25,4 +25,10 @@ class Account extends Model
                 ->where('type','d')
                 ->orderBy('datetime','desc');
     }
+
+    public function withdrawals() {
+        return $this->hasMany('App\Models\Transaction')
+                ->where('type','w')
+                ->orderBy('datetime','desc');
+    }
 }

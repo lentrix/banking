@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AccountController;
 use App\Http\Controllers\ClientController;
+use App\Models\Client;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -29,12 +30,21 @@ Route::get('/test', function(){
     return response()->json($res);
 });
 
-
-Route::get('/clients', [ClientController::class, 'index']);
 Route::get('/clients/{client}', [ClientController::class, 'view']);
+Route::patch('/clients/{client}', [ClientController::class, 'update']);
+Route::put('/clients/{client}', [ClientController::class, 'update']);
+Route::delete('/clients/{client}', [ClientController::class, 'destroy']);
+Route::get('/clients', [ClientController::class, 'index']);
+Route::post('/clients',[ClientController::class, 'store']);
 
-Route::get('/accounts', [AccountController::class, 'index']);
 Route::get('/accounts/{account}', [AccountController::class, 'view']);
+Route::get('/accounts', [AccountController::class, 'index']);
+
+
+
+
+
+
 
 Route::post('/multiply', function(Request $request) {
     if(!$request->num1 || !$request->num2)
